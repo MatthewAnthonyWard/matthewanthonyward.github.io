@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Energy Physics & ML in Medicine</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #222222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: sans-serif;
+    }
+
+    .panel-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      width: min(720px, 96vw);
+    }
+
+    .panel {
+      position: relative;
+      height: 85vh; /* change this to resize the graphic */
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .panel canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .panel-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      pointer-events: none;
+      background: none;
+    }
+
+    #panel-ml { border-left: 0.5px solid rgba(255,255,255,0.12); }
+    #label-ml  { text-align: right; }
+  </style>
+</head>
+<body>
+
+  <div class="panel-wrap">
+    <div class="panel" id="panel-hep"
+    onclick="window.parent.postMessage({navigate: './research-qcd.html'}, '*')">
+      <canvas id="c-hep"></canvas>
+      <div class="panel-label" id="label-hep">High energy physics</div>
+    </div>
+    <div class="panel" id="panel-ml"
+    onclick="window.parent.postMessage({navigate: './research-ai.html'}, '*')">
+      <canvas id="c-ml"></canvas>
+      <div class="panel-label" id="label-ml">Machine learning</div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    function lerp(a,b,t){ return a+(b-a)*t; }
+    function lerpC(c1,c2,t){
+      return {
+        r: Math.round(lerp(c1.r,c2.r,t)),
+        g: Math.round(lerp(c1.g,c2.g,t)),
+        b: Math.round(lerp(c1.b,c2.b,t)),
+        a: lerp(c1.a,c2.a,t)
+      };
+    }
+    function rgba(c){ return `rgba(${c.r},${c.g},${c.b},${c.a})`; }
+
+    function initCanvas(cid, pid){
+      const canvas = document.getElementById(cid);
+      const panel  = document.getElementById(pid);
+      const dpr    = window.devicePixelRatio || 1;
+      const W = panel.offsetWidth  || 360;
+      const H = panel.offsetHeight || 340;
+      canvas.width  = W * dpr;
+      canvas.height = H * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      return {ctx, W, H};
+    }
+
+    /* ── LEFT: Cloud chamber ── */
+    (function(){
+      let hover = 0, target = 0, raf = null;
+      const {ctx, W, H} = initCanvas('c-hep', 'panel-hep');
+      const label = document.getElementById('label-hep');
+      const OX = W, OY = H / 2;
+
+      const rng = (a, b) => a + Math.random() * (b - a);
+      const tracks = Array.from({length: 22}, () => ({
+        angle:  rng(Math.PI * 0.52, Math.PI * 1.48),
+        len:    rng(W * 0.35, W * 1.1),
+        curve:  rng(-0.5, 0.5),
+        w:      rng(0.6, 2.0),
+        spiral: Math.random() < 0.18,
+        isMuon: Math.random() < 0.22
+      }));
+
+      function draw(){
+        ctx.fillStyle = '#222222';
+        ctx.fillRect(0, 0, W, H);
+
+        for(const t of tracks){
+          ctx.save();
+          ctx.translate(OX, OY);
+          ctx.rotate(t.angle);
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          for(let s = 1; s <= 60; s++){
+            const f = s / 60;
+            const shrink = t.spiral ? (1 - f * 0.65) : 1;
+            ctx.lineTo(f * t.len * shrink,
+                       Math.sin(f * Math.PI) * t.curve * t.len * 0.3 * shrink);
+          }
+          const greyC = {r:160, g:160, b:160, a:0.55};
+          const colC  = t.isMuon ? {r:190, g:110, b:255, a:0.9}
+                                 : {r:70,  g:150, b:255, a:0.85};
+          ctx.strokeStyle = rgba(lerpC(greyC, colC, hover));
+          ctx.lineWidth = t.w;
+          ctx.lineCap  = 'round';
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        ctx.beginPath();
+        ctx.arc(OX, OY, 6, 0, Math.PI * 2);
+        ctx.fillStyle = rgba(lerpC({r:180,g:180,b:180,a:0.6},
+                                   {r:255,g:255,b:255,a:0.9}, hover));
+        ctx.fill();
+
+        label.style.color = `rgba(255,255,255,${0.5 + hover * 0.45})`;
+      }
+
+      function animate(){
+        hover += (target - hover) * 0.07;
+        draw();
+        if(Math.abs(hover - target) > 0.001) raf = requestAnimationFrame(animate);
+      }
+
+      const panel = document.getElementById('panel-hep');
+      panel.addEventListener('mouseenter', () => { target = 1; cancelAnimationFrame(raf); animate(); });
+      panel.addEventListener('mouseleave', () => { target = 0; cancelAnimationFrame(raf); animate(); });
+      draw();
+    })();
+
+    /* ── RIGHT: Neural network ── */
+    (function(){
+      let hover = 0, target = 0, raf = null;
+      const {ctx, W, H} = initCanvas('c-ml', 'panel-ml');
+      const label = document.getElementById('label-ml');
+      const OY = H / 2;
+
+      const layerXFrac   = [0,    0.22, 0.44, 0.66, 0.84, 0.97];
+      const layerSizes   = [1,    4,    5,    5,    3,    1   ];
+      const layerColours = [
+        {r:255, g:160, b:80 },
+        {r:80,  g:200, b:255},
+        {r:80,  g:200, b:255},
+        {r:80,  g:200, b:255},
+        {r:120, g:230, b:160},
+        {r:255, g:120, b:150}
+      ];
+
+      const nodes = layerSizes.map((n, li) => {
+        const xs = layerXFrac[li] * W;
+        return Array.from({length: n}, (_, i) => {
+          const spread = n === 1 ? 0 : (n - 1) * 0.14 * H;
+          const ys = OY - spread / 2 + (n === 1 ? 0 : i * spread / (n - 1));
+          return {x: xs, y: ys, li};
+        });
+      });
+
+      const edges = [];
+      for(let li = 0; li < nodes.length - 1; li++){
+        for(const a of nodes[li]){
+          for(const b of nodes[li + 1]){
+            edges.push({a, b, w: Math.random()});
+          }
+        }
+      }
+
+      function draw(){
+        ctx.fillStyle = '#222222';
+        ctx.fillRect(0, 0, W, H);
+
+        for(const e of edges){
+          const c  = lerpC({r:140,g:140,b:140,a:0.15},
+                           {r:80, g:210,b:165,a:0.18 + e.w * 0.12}, hover);
+          const mx = (e.a.x + e.b.x) / 2;
+          ctx.beginPath();
+          ctx.moveTo(e.a.x, e.a.y);
+          ctx.bezierCurveTo(mx, e.a.y, mx, e.b.y, e.b.x, e.b.y);
+          ctx.strokeStyle = rgba(c);
+          ctx.lineWidth   = 0.8 + e.w * 0.5;
+          ctx.stroke();
+        }
+
+        nodes.forEach((layer, li) => {
+          layer.forEach(node => {
+            const r = (li === 0 || li === 5) ? 6 : 6;
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+            ctx.fillStyle   = rgba(lerpC({r:90,g:90,b:90,a:1},
+                                        {...layerColours[li], a:1}, hover));
+            ctx.fill();
+            ctx.strokeStyle = rgba(lerpC({r:150,g:150,b:150,a:0.4},
+                                        {...layerColours[li], a:0.85}, hover));
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          });
+        });
+
+        label.style.color = `rgba(255,255,255,${0.5 + hover * 0.45})`;
+      }
+
+      function animate(){
+        hover += (target - hover) * 0.07;
+        draw();
+        if(Math.abs(hover - target) > 0.001) raf = requestAnimationFrame(animate);
+      }
+
+      const panel = document.getElementById('panel-ml');
+      panel.addEventListener('mouseenter', () => { target = 1; cancelAnimationFrame(raf); animate(); });
+      panel.addEventListener('mouseleave', () => { target = 0; cancelAnimationFrame(raf); animate(); });
+      draw();
+    })();
+
+  })();
+  </script>
+
+</body>
+</html>

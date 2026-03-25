@@ -1,0 +1,5 @@
+### Predicting the clinical acceptability of AI-contours using spatial metrics
+
+Despite the widespread use of deep learning models for medical image segmentation, there is no clinically informed standard for assessing their performance. Evaluation typically relies on geometric similarity between predicted and ground-truth segmentations, with the Dice–Sørensen coefficient acting as the de facto gold standard. However, recent studies suggest alternative metrics may correlate more strongly with clinical acceptability, the measurement of which remains uncertain.<br>
+<br>
+In this study, an AI model delineated lymphatic neck nodal volumes, which were edited by a registrar oncologist according to consensus guidelines. The original contours received Likert-scale ratings and editing times were recorded. Multiple linear regression evaluated relationships between segmentation metrics and editing time, while Monte Carlo analysis assessed clustering in Likert scores. Our results suggest Dice may not be the optimal metric for model evaluation, with a slight preference for measures emphasising boundary discrepancies over volumetric overlap.

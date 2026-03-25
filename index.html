@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<title>Matt Ward | Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- BG shapes -->
+<canvas id="string-canvas"></canvas>
+
+ <!-- Card -->
+<div class="card">
+
+  <!-- NAV -->
+  <nav class="topnav">
+    <div class="nav-brand">
+      <div class="nav-icon">MW</div>
+      <span class="nav-name">Matthew Ward</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Summary</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div style="height: 2vh;"></div>
+  <section class="hero">
+    <div class="portrait">
+      <img src="images/Headshot.jpg" alt="Portrait of Matthew Ward">
+    </div>
+
+    <div class="hero-body">
+      <p class="hero-role">Theoretical Physicist | AI Developer</p>
+      <h1 class="hero-name">Matthew Ward</h1>
+      <p class="hero-desc">
+PhD candidate in theoretical particle physics with experience developing machine learning algorithms for clinical research. Exploring opportunities to apply this experience to quantum error correction (QEC) and the development of fault-tolerant quantum computers.
+</p>
+      <div class="hero-btns">
+        <a href="files/MWardCV.pdf" download class="btn btn-out">Download CV</a>
+        <a href="./contact.html" class="btn btn-blue">Contact</a>
+      </div>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/matthew-ward-631987b4/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/MattAWard"><i class="fab fa-github"></i></a>
+        <a href="https://orcid.org/0009-0006-4421-6171"><i class="fab fa-orcid"></i></a>
+      </div>
+    </div>
+  </section>
+  <div style="height: 3vh;"></div>
+
+
+ <!-- At a Glance -->
+<section class="sec">
+  <h2 class="sec-title">At a Glance</h2>
+  <div class="cv-grid">
+    <div class="cv-column">
+      <h3>Education</h3>
+      <ul>
+        <strong>University of Southampton, 2019–2027</strong> (Part-Time)<br>
+        PhD Physics <em>"Holographic Descriptions of Gauge Dynamics"</em> (expected)
+      </ul>
+      <ul>
+        <strong>Lancaster University, 2013–2017</strong><br>
+        MSci Theoretical Physics with Mathematics (First Class Honours)
+      </ul>
+    </div>
+
+    <div class="cv-column">
+      <h3>Experience</h3>
+      <ul>
+        <strong>University Hospital Southampton, 2019–Present</strong><br>
+        Medical Physicist (AI Development), Clinical Scientific Computing Group
+      </ul>
+
+      <ul>
+        <strong>University Hospitals Birmingham, 2017–2019</strong><br>
+        Junior Research Physicist, Radiotherapy Physics
+      </ul>
+    </div>
+  </div>
+</section>
+  
+
+  <!-- Skills -->
+  <section class="sec">
+    <h2 class="sec-title">Skills</h2>
+    <div class="skills">
+
+      <div class="skl">
+        <svg class="skl-icon"><use xlink:href="icons/sprite.svg#icon-atom"></use></svg>
+        <div class="md" data-markdown="/content/skill-quantum.md"></div>
+      </div>
+
+      <div class="skl">
+        <svg class="skl-icon"><use xlink:href="icons/sprite.svg#icon-ai"></use></svg>
+        <div class="md" data-markdown="/content/skill-ai.md"></div>
+      </div>
+
+      <div class="skl">
+        <svg class="skl-icon"><use xlink:href="icons/sprite.svg#icon-mathematica"></use></svg>
+        <div class="md" data-markdown="/content/skill-mathematica.md"></div>
+      </div>
+
+      <div class="skl">
+        <svg class="skl-icon"><use xlink:href="icons/sprite.svg#icon-python"></use></svg>
+        <div class="md" data-markdown="/content/skill-python.md"></div>
+      </div>
+
+      <div class="skl">
+        <svg class="skl-icon"><use xlink:href="icons/sprite.svg#icon-chart"></use></svg>
+        <div class="md" data-markdown="/content/skill-stats.md"></div>
+      </div>
+
+      <div class="skl">
+        <svg class="skl-icon"><use xlink:href="icons/sprite.svg#icon-web"></use></svg>
+        <div class="md" data-markdown="/content/skill-web.md"></div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height: 2vh;"></div>
+
+  <!-- Current Projects -->
+  <section class="sec">
+    <h2 class="sec-title">Current Projects</h2>
+    <div class="project">
+      <figure>
+        <img src="images/2nd-order-cropped.png" alt="Brane Embeddings in Finite-Temp QCD" class="project-img">
+        <figcaption>The embedding of D7 branes in a AdS-Schwarzchild background for different temperatures as a function of energy. In this case, a warped black hole breaks the SO(6) symmetry explicitly, producing either a first or second order quark phase transition. </figcaption>
+      </figure>
+      <div class="md" data-markdown="/content/ads-qcd-preview.md"></div>
+    </div>
+    <div style="height: 8vh;"></div>
+    <div class="project">
+      <div class="md" data-markdown="/content/machine-learning-preview.md"></div>
+      <figure>
+      <img src="images/surface-dice-monte.png" alt="Monte-Carlo simulation for surface dice clustering" class="project-img">
+        <figcaption>Monte Carlo simulation arranging n level-2 Likert scores amongst (N-n) level-1 scores, where the red dashed line indicates the observed clustering from our dataset according to the surface dice metric.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+    <div style="height: 2vh;"></div>
+
+  <!-- Industry Interests -->
+  <section class="sec">
+    <h2 class="sec-title">Industry Interests</h2>
+    <div class="project">
+      <figure>
+        <img src="images/holographic-qec.png" alt="Brane Embeddings in Finite-Temp QCD" class="project-img no-border">
+        <figcaption></figcaption>
+      </figure>
+      <div class="md" data-markdown="/content/qec-preview.md"></div>
+    </div>
+  </section>
+
+  <div style="height: 4vh;"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="f-social">
+      <a href="https://www.linkedin.com/in/matthew-ward-631987b4/">LinkedIn</a>
+      <a href="https://github.com/MattAWard">GitHub</a>
+      <a href="https://orcid.org/0009-0006-4421-6171">ORCiD</a>
+    </div>
+    <div class="f-copy">Created by Matthew Ward</div>
+  </footer>
+</div>
+
+<a href="#" class="scrolltop"><i class="fas fa-chevron-up"></i></a>
+<script src="strings.js"></script>
+</body>
+</html>
