@@ -233,9 +233,12 @@ window.addEventListener('message', async e => {
 // Initialise on first load
 initCounters();
 initScrollTop();
-await initMarkdown();
 
-// MathJax typeset
-if (window.MathJax) {
-  MathJax.typesetPromise();
-}
+(async () => {
+  await initMarkdown();
+
+  // MathJax typeset after markdown is loaded
+  if (window.MathJax) {
+    MathJax.typesetPromise();
+  }
+})();
