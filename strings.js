@@ -197,16 +197,12 @@ async function loadPage(url) {
   if (newTitle) {
     document.title = newTitle;
   }
-  
+
   // Re-initialise page-specific scripts
   initCounters();
   initScrollTop();
-
   await initMarkdown();
-
-  if (window.MathJax) {
-    MathJax.typesetPromise();
-  }
+  if (window.MathJax) {MathJax.typesetPromise();}
 }
 
 document.addEventListener('click', async e => {
