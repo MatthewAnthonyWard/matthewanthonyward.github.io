@@ -25,7 +25,9 @@ function initMarkdown() {
         el.innerHTML = marked.parse(md);
 
         if (window.MathJax) {
-        MathJax.typesetPromise([el]);
+        MathJax.startup.promise.then(() => {
+          MathJax.typesetPromise([el]);
+        });
       }
       });
   });
