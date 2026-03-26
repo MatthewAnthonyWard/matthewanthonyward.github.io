@@ -235,6 +235,13 @@ initCounters();
 initScrollTop();
 initMarkdown();
 
+// Update the title for the first page
+const firstTitle = document.querySelector('title')?.innerText;
+if (firstTitle) {
+  document.title = firstTitle;
+}
+
+// MathJax typeset
 if (window.MathJax) {
   MathJax.typesetPromise();
 }
