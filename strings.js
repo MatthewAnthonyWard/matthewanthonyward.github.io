@@ -13,22 +13,16 @@ window.addEventListener('resize', resize);
 
 function rand(min, max) { return min + Math.random() * (max - min); }
 
-function initMarkdown() {
+async function initMarkdown() {
   const blocks = document.querySelectorAll('[data-markdown]');
 
-  blocks.forEach(el => {
+  for (const el of blocks) {
     const file = el.getAttribute('data-markdown');
+    const res = await fetch(file);
+    const md = await res.text();
 
-    fetch(file)
-      .then(res => res.text())
-      .then(md => {
-        el.innerHTML = marked.parse(md);
-
-        if (window.MathJax) {
-          MathJax.typesetPromise([el]);
-        }
-      });
-  });
+    el.innerHTML = marked.parse(md);
+  }
 }
 
 const strings = [];
@@ -200,7 +194,8 @@ async function loadPage(url) {
   // Re-initialise page-specific scripts
   initCounters();
   initScrollTop();
-  initMarkdown();
+
+  await initMarkdown();
 
   if (window.MathJax) {
     MathJax.typesetPromise();
@@ -237,6 +232,6 @@ initCounters();
 initScrollTop();
 initMarkdown();
 
-setTimeout(() => {
-  if (window.MathJax) MathJax.typesetPromise();
-}, 50);
+if (window.MathJax) {
+  MathJax.typesetPromise();
+}
