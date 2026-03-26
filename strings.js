@@ -221,6 +221,15 @@ window.addEventListener('message', async e => {
   await loadPage(url);
 });
 
+window.addEventListener('load', function() {
+  // wait a tiny moment for markdown to convert
+  setTimeout(() => {
+    if (window.MathJax) {
+      MathJax.typesetPromise();
+    }
+  }, 200); // 200ms should be enough
+});
+
 // Initialise on first load
 initCounters();
 initScrollTop();

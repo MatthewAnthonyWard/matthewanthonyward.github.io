@@ -1,5 +1,15 @@
 # A Brane New World: Quantum Dynamics from Classical Gravity
 
+## Modelling the Subatomic World
+Protons and neutrons, the building blocks all atomic matter, are comprised of subatomic particles known as quarks. These quarks come in six different types or _flavours_, two of which are stable enough to form atomic nuclei: the _up_ and the _down_ quark.
+Mediated by force-carrying particles called _gluons_, the interaction strength of quarks scales with the coupling constant $g$, becoming strongly coupled and forming quark bound states (including the proton and neutron, known collectively as the nucleons) for $g \geq 1$.
+<br>
+<br>
+Whilst the quantum field theory for quark-gluon interactions (known as quantum chromodynamics or QCD) is useful for modelling quark-gluon dynamics when $g \ll 1$, it fails in the crucial regime where nucleons form. That's because quantum field theory uses perturbtaions about a solveable theory to compute observables, the contributions of which depend on powers of $g$ and thus become divergent in the strong coupling regime.
+<br>
+<br>
+ This means that, with current techniques, it is impossible to compute nucleon masses from first principles, much less the mass of any other quark bound state. This is true of other QCD observables such as decay lifetimes and scattering cross sections, as well as modelling non-perturbative phenomena such as confinement and chiral symmetry breaking. To break this impasse, we must formulate an alternate description of quark-gluon interactions that avoids the largeness of $g$, the formulation of which takes us to the strangest objects in the Universe - black holes.
+
 ## Black Holes & the Information Paradox
 Einstein's general relativity describes gravity as the curvature of spacetime caused by mass. Whilst usually significant over large distances, the extreme density of a black hole can cause dramatic changes in spacetime curvature across the width of a single atom, making them ideal for studying phenomena affected by both gravity and quantum mechanics.
 <br>
@@ -24,15 +34,14 @@ This suggests two complementary descriptions of the same physics: the bulk (inte
 As for our quantum fluctuations, they become entangled with the Hawking radiation, gradually carrying the boundary information away as the black hole evaporates. In principle, collecting all this radiation would allow one to reconstruct everything that fell in, resolving the information paradox. 
 
 ## The AdS/CFT Correspondance
-The first useful example of the holographic principle came about in 1997, with the discovery of the AdS/CFT correspondance. It states:
+The first useful example of the holographic principle came about in 1997 with the discovery of the AdS/CFT correspondance. Whilst the full version of the correspondence relates quantum gravity in a bulk Anti de Sitter (AdS) spacetime to a conformal field theory (CFT) on the boundary, we are more interested in the weak form of the duality, which relates classical gravity to a strongly-coupled gauge theory. It states:
 <br>
 <br>
-> a theory of quantum gravity in an asymptotically Anti-de Sitter (AdS) spacetime is equivalent to a conformal field theory (CFT) on its boundary. In the large‑N, strong-coupling limit of the boundary theory, the bulk description reduces to weakly-coupled classical supergravity.
+> a four-dimensional strongly-interacting conformal field theory with a large number of colour (gauge) charges is equivalent to classical supergravity in a five-dimensional curved AdS spacetime
 
-<br>
+To apply this idea to the study of quantum interactions, we need to slightly alter this correspondance to describe a boundary theory more similar to QCD, breaking some of the symmetries present in its current formulation. 
 
-The CFT in this case is an _n-1_ dimensional non-abelian _SU(N)_ gauge theory where _N_ denotes the number of conserved charges. We already know that such a theory resembles a theory of quantum gravity in the large _N_ limit, thanks toi 
 
 
 ## From CFT to QCD
-
+The previous section introduced terminology 
