@@ -23,9 +23,14 @@ function initMarkdown() {
       .then(res => res.text())
       .then(md => {
         el.innerHTML = marked.parse(md);
+
+        if (window.MathJax) {
+        MathJax.typesetPromise([el]);
+      }
       });
   });
 }
+
 const strings = [];
 const NUM_STRINGS = 12;
 
@@ -219,15 +224,6 @@ window.addEventListener('message', async e => {
   const url = e.data.navigate;
   history.pushState({}, '', url);
   await loadPage(url);
-});
-
-window.addEventListener('load', function() {
-  // wait a tiny moment for markdown to convert
-  setTimeout(() => {
-    if (window.MathJax) {
-      MathJax.typesetPromise();
-    }
-  }, 200); // 200ms should be enough
 });
 
 // Initialise on first load
