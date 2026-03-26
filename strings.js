@@ -188,9 +188,16 @@ async function loadPage(url) {
   const html = await res.text();
   const doc = new DOMParser().parseFromString(html, 'text/html');
 
+  // Update main content
   document.querySelector('.card').innerHTML =
     doc.querySelector('.card').innerHTML;
 
+  // Update page title
+  const newTitle = doc.querySelector('title')?.innerText;
+  if (newTitle) {
+    document.title = newTitle;
+  }
+  
   // Re-initialise page-specific scripts
   initCounters();
   initScrollTop();
