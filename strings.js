@@ -192,10 +192,10 @@ async function loadPage(url) {
   document.querySelector('.card').innerHTML =
     doc.querySelector('.card').innerHTML;
 
-  // Update page title
-  const newTitle = doc.querySelector('title')?.innerText;
-  if (newTitle) {
-    document.title = newTitle;
+  // --- Update title properly ---
+  const match = html.match(/<title>(.*?)<\/title>/);
+  if (match && match[1]) {
+    document.title = match[1];
   }
 
   // Re-initialise page-specific scripts
@@ -234,12 +234,6 @@ window.addEventListener('message', async e => {
 initCounters();
 initScrollTop();
 initMarkdown();
-
-// Update the title for the first page
-const firstTitle = document.querySelector('title')?.innerText;
-if (firstTitle) {
-  document.title = firstTitle;
-}
 
 // MathJax typeset
 if (window.MathJax) {
