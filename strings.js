@@ -233,7 +233,7 @@ window.addEventListener('message', async e => {
 // Initialise on first load
 initCounters();
 initScrollTop();
-initMarkdown();
+await initMarkdown();
 
 // MathJax typeset
 if (window.MathJax) {
