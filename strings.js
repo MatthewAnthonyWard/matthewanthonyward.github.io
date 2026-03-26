@@ -25,10 +25,8 @@ function initMarkdown() {
         el.innerHTML = marked.parse(md);
 
         if (window.MathJax) {
-        MathJax.startup.promise.then(() => {
           MathJax.typesetPromise([el]);
-        });
-      }
+        }
       });
   });
 }
@@ -195,12 +193,18 @@ async function loadPage(url) {
   const res = await fetch(url);
   const html = await res.text();
   const doc = new DOMParser().parseFromString(html, 'text/html');
+
   document.querySelector('.card').innerHTML =
     doc.querySelector('.card').innerHTML;
-  // Re-initialise page-specific scripts after content swap
+
+  // Re-initialise page-specific scripts
   initCounters();
   initScrollTop();
   initMarkdown();
+
+  if (window.MathJax) {
+    MathJax.typesetPromise();
+  }
 }
 
 document.addEventListener('click', async e => {
@@ -232,3 +236,7 @@ window.addEventListener('message', async e => {
 initCounters();
 initScrollTop();
 initMarkdown();
+
+setTimeout(() => {
+  if (window.MathJax) MathJax.typesetPromise();
+}, 50);
