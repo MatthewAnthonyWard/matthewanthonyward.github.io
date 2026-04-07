@@ -104,7 +104,7 @@
         angle:  rng(Math.PI * 0.52, Math.PI * 1.48),
         len:    rng(W * 0.35, W * 1.1),
         curve:  rng(-0.5, 0.5),
-        w:      rng(0.6, 2.0),
+        w:      rng(1.0, 2.2),
         spiral: Math.random() < 0.18,
         isMuon: Math.random() < 0.22
       }));
@@ -166,7 +166,7 @@
       const layerXFrac   = [0,    0.22, 0.44, 0.66, 0.84, 0.97];
       const layerSizes   = [1,    4,    5,    5,    3,    1   ];
       const layerColours = [
-        {r:255, g:160, b:80 },
+        {r:180, g:180, b:180},
         {r:80,  g:200, b:255},
         {r:80,  g:200, b:255},
         {r:80,  g:200, b:255},
@@ -204,7 +204,7 @@
           ctx.moveTo(e.a.x, e.a.y);
           ctx.bezierCurveTo(mx, e.a.y, mx, e.b.y, e.b.x, e.b.y);
           ctx.strokeStyle = rgba(c);
-          ctx.lineWidth   = 0.8 + e.w * 0.5;
+          ctx.lineWidth   = 1.4;
           ctx.stroke();
         }
 
