@@ -197,7 +197,28 @@ async function loadPage(url) {
 
   initCounters();
   initScrollTop();
+
+  // Dynamically load MathJax if the new page needs it
+  const needsMathJax = doc.querySelector('script[src*="mathjax"]');
+  if (needsMathJax && !window.MathJax?.startup?.promise) {
+    // Set config BEFORE loading the script
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      startup: { typeset: false }
+    };
+    await new Promise(resolve => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.onload = resolve;
+      document.head.appendChild(script);
+    });
+  }
+
   await initMarkdown();
+
   if (window.MathJax) {
     await MathJax.startup.promise;
     MathJax.typesetPromise();
