@@ -182,23 +182,19 @@ function initScrollTop() {
   });
 }
 
-// ── SPA Navigation ──
 async function loadPage(url) {
   const res = await fetch(url);
   const html = await res.text();
   const doc = new DOMParser().parseFromString(html, 'text/html');
 
-  // Update main content
   document.querySelector('.card').innerHTML =
     doc.querySelector('.card').innerHTML;
 
-  // --- Update title properly ---
   const match = html.match(/<title>(.*?)<\/title>/);
   if (match && match[1]) {
     document.title = match[1];
   }
 
-  // Re-initialise page-specific scripts
   initCounters();
   initScrollTop();
   await initMarkdown();
@@ -206,6 +202,7 @@ async function loadPage(url) {
     await MathJax.startup.promise;
     MathJax.typesetPromise();
   }
+}
 
 document.addEventListener('click', async e => {
   const link = e.target.closest('a');
@@ -239,17 +236,20 @@ initScrollTop();
 (async () => {
   await initMarkdown();
 
-  if (window.MathJax) {
-    await MathJax.startup.promise;
-    MathJax.typesetPromise();
-  } else {
-    window.MathJax = {
-      startup: {
-        ready() {
-          MathJax.startup.defaultReady();
-          MathJax.startup.promise.then(() => MathJax.typesetPromise());
+  await new Promise(resolve => {
+    if (window.MathJax?.startup?.promise) {
+      resolve();
+    } else {
+      // Poll until MathJax startup promise exists
+      const interval = setInterval(() => {
+        if (window.MathJax?.startup?.promise) {
+          clearInterval(interval);
+          resolve();
         }
-      }
-    };
-  }
+      }, 50);
+    }
+  });
+
+  await MathJax.startup.promise;
+  MathJax.typesetPromise();
 })();
