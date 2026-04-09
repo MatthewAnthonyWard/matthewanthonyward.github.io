@@ -15,14 +15,12 @@ function rand(min, max) { return min + Math.random() * (max - min); }
 
 async function initMarkdown() {
   const blocks = document.querySelectorAll('[data-markdown]');
-
-  for (const el of blocks) {
+  await Promise.all([...blocks].map(async el => {
     const file = el.getAttribute('data-markdown');
     const res = await fetch(file);
     const md = await res.text();
-
     el.innerHTML = marked.parse(md);
-  }
+  }));
 }
 
 const strings = [];
@@ -217,12 +215,10 @@ async function loadPage(url) {
     });
   }
 
+  const mathJaxReady = MathJax.startup.promise;
   await initMarkdown();
-
-  if (window.MathJax) {
-    await MathJax.startup.promise;
-    MathJax.typesetPromise();
-  }
+  await mathJaxReady;
+  MathJax.typesetPromise();
 }
 
 document.addEventListener('click', async e => {
@@ -253,15 +249,11 @@ window.addEventListener('message', async e => {
 // Initialise on first load
 initCounters();
 initScrollTop();
-
 (async () => {
-  await initMarkdown();
-
-  await new Promise(resolve => {
+  const mathJaxReady = new Promise(resolve => {
     if (window.MathJax?.startup?.promise) {
       resolve();
     } else {
-      // Poll until MathJax startup promise exists
       const interval = setInterval(() => {
         if (window.MathJax?.startup?.promise) {
           clearInterval(interval);
@@ -271,6 +263,7 @@ initScrollTop();
     }
   });
 
-  await MathJax.startup.promise;
+  await initMarkdown();
+  await mathJaxReady;
   MathJax.typesetPromise();
 })();
