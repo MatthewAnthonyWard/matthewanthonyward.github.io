@@ -202,8 +202,10 @@ async function loadPage(url) {
   initCounters();
   initScrollTop();
   await initMarkdown();
-  if (window.MathJax) {MathJax.typesetPromise();}
-}
+  if (window.MathJax) {
+    await MathJax.startup.promise;
+    MathJax.typesetPromise();
+  }
 
 document.addEventListener('click', async e => {
   const link = e.target.closest('a');
@@ -237,8 +239,17 @@ initScrollTop();
 (async () => {
   await initMarkdown();
 
-  // MathJax typeset after markdown is loaded
   if (window.MathJax) {
+    await MathJax.startup.promise;
     MathJax.typesetPromise();
+  } else {
+    window.MathJax = {
+      startup: {
+        ready() {
+          MathJax.startup.defaultReady();
+          MathJax.startup.promise.then(() => MathJax.typesetPromise());
+        }
+      }
+    };
   }
 })();
