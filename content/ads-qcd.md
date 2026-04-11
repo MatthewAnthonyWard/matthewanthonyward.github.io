@@ -1,10 +1,10 @@
 # AdS/QCD: Quantum Dynamics from Classical Gravity
 
 ## Modelling the Subatomic World
-Protons and neutrons, the building blocks of atomic matter, are comprised of quarks bound together by the strong nuclear force. This force is mediated by gluons, the strength of which is set by the gauge coupling $g$. As $g$ increases, the quarks stick together, forming bound states like the proton and neutron. For small $g$, the quarks and gluons are effectively free, producing a state of matter known as the quark-gluon plasma (QGP).
+Protons and neutrons, the building blocks of atomic matter, are comprised of quarks bound together by the strong nuclear force. This force is mediated by gluons, the strength of which is set by the gauge coupling $g$. As $g$ increases, the quarks stick together, forming hadrons like the proton and neutron. For small $g$, the quarks and gluons are effectively free, producing a state of matter known as the quark-gluon plasma (QGP).
 <br>
 <br>
-The value of $g$ where this transistion occurs, as well as whether the transition is smooth (second-order) or discontinuous (first-order), is a question of great interest when modelling the strong force. However, despite the field theoretic description of electromagnetism (known as quantum electrodynamics or QED) has been incredibly successful in describing electron-photon interactions, the field theory description of the strong force (known as quantum chromodynamics or QCD) breaks down in the crucial regime where quarks confine. This makes it impossible to compute observables such as the proton/neutron masses from first principles, much less understand the origin of most of the mass in the observable Universe.
+The value of $g$ for which this transistion occurs, and whether the transition is smooth (second-order) or discontinuous (first-order), is a question of great importance when modelling the strong force. However, whilst the field theoretic description of electromagnetism (known as quantum electrodynamics or QED) has been incredibly successful in describing electron-photon interactions, the field theory description of the strong force (known as quantum chromodynamics or QCD) breaks down in the crucial regime where quarks confine. This makes it impossible to compute QCD observables such as the hadron masses at strong coupling, nor gain a qualitative description of the mechanism that binds quarks together.
 <br>
 <br>
 To break this impasse, we must formulate an alternate description of quark-gluon interactions that is valid for large $g$, the discovery of which takes us to the strangest objects in the Universe - black holes.
@@ -48,37 +48,44 @@ We know that the warping of spacetime around a black hole slows the internal clo
     </div>
 </div>
 
-Whilst important for our physical understanding of black holes, the holographic principle makes a deeper statement regarding the nature of reality itself. If all of the information contained within a given volume can be captured on its surface, is dimensionality a basic property of our universe or does it emerge from a more fundamental description with fewer dimensions? If so, what does this lower-dimensional theory look like? For a specific theory of quantum gravity (type IIb superstring theory) in the bulk, the answer turned out to be none other than a special type of quantum field theory.
+Whilst important for our physical understanding of black holes, the holographic principle makes a deeper statement regarding the nature of our universe. If all the information contained within a given volume is present on its surface, are the four dimensions of our universe fundamental, or do they arise from an underlying theory that lives in a lower dimensional space? Furthermore, if the black hole interior is governed by a theory of quantum gravity (e.g. string theory) as expected, what theory best describes the scrambled boundary? As it turned out, the answer to this question became one of the most important discoveries in modern theoretical physics.
 
 
 ## The AdS/CFT Correspondance
-Named the AdS/CFT correspondance, the first practical implementation of the holographic principle proposed a duality between quantum gravity in a bulk Anti de Sitter (AdS) spacetime and a conformal field theory (CFT) living on its boundary. Crucially, the equivalence pairs a gravitating theory in $n$ dimensions with a purely quantum theory (no gravity) in $n-1$ dimensions, implying that the fabric of space and time might actually <em>emerge</em> from quantum interactions. 
+ The first functional implementation of the holographic principle, dubbed the AdS/CFT correspondance, proposed a duality between type-IIb superstring theory in a five-dimensional Anti de Sitter (AdS) spacetime and a four-dimensional conformal field theory (CFT) living on its boundary. Crucially, the duality mapped a gravitating theory to a quantum theory without gravity, implying that the fabric of space and time may <em>emerge</em> from quantum interactions in a lower-dimensional space. 
  <br>
  <br>
- Better yet, the AdS/CFT correspondance is a strong-weak duality, meaning the dual description of a highly quantum (stringy) theory of gravity is a weakly-coupled CFT for which the techniques used to solve problems in QED (namely perturbation theory) can be applied. For our purposes however, we are more interested in the reverse situation; the mapping of a strongly-coupled quantum field theory like QCD to a non-quantum (classical) theory of gravity. In the so-called <em>supergravity limit</em>, the statement of the correspondance takes the weak form:
+ Better yet, the AdS/CFT correspondance is a strong-weak duality, meaning that the dual description of a highly quantum (stringy) theory of gravity is a weakly-coupled (small $g$) CFT, for which the techniques used to solve problems in QED can be applied. Alternatively, one can map a strongly-coupled quantum field theory e.g. QCD to a non-quantum (classical) theory of gravity. In this case, the statement of the correspondance is:
 <br>
 <br>
-> a supersymmetric four-dimensional strongly-coupled conformal field theory with a large number of colour (gauge) charges is equivalent to classical supergravity on a ten-dimensional $AdS_5\times S_5$ background
+> a supersymmetric four-dimensional strongly-coupled conformal field theory with a large number of colour (gauge) charges is equivalent to classical supergravity on a ten-dimensional $AdS_5\times S_5$ background.
 
-This statement contains terminology that will not be described in detail here. Instead, it sufficies to highlight the additional assumptions and symmetries present in this definition that we wish to break in order to describe a theory more like real-world QCD.
+Unpacking this statement fully requires a large amount of pre-requisite information that will not be provided here. Instead, it will suffice to highlight the assumptions and symmetries that we wish to break in this statement so that the CFT described looks more like real-world QCD.
 
 ## CFT $\rightarrow$ QCD
-There are three features of the weak form of the AdS/CFT correspondance that are most at odds with QCD. They are:
+There are three features of the above form of the AdS/CFT correspondance that are most at odds with QCD. They are:
 <br>
 <br>
-* the presence of conformal symmetry
-* the inclusion of supersymmetry
-* the requirement of a large number of colour charges
-<br>
-The first difference is conformal symmetry, which implies that a physical system is invariant under changes in scale. Objects in the theory can be blown up or shrunk down without effecting the outcome of physical measurements, which certainly isn't the case for quark-gluon interactions. More importantly, there can be no concept of mass in a conformal field theory, since the existance of a massive object introduces an inherent energy scale into the description.
+* <strong>Conformal symmetry</strong> describes a physical system with no intrinsic mass or energy scale. In such a theory, the rate of change of the gauge coupling $g$ with respect to the probe energy $\mu$ vanishes at a so-called fixed point, meaning the theory behaves the same way at all energy scales. Though QCD does not possess this symmetry, the value of $g$ is very small when $\mu$ is large, making it approximately conformal in the high energy regime. Away from the fixed point, the value of $g$ increases as $\mu$ falls, shifting into the strongly-coupled regime when $\mu$ approaches the QCD scale $\Lambda_{QCD}$. This triggers strong-coupling phenomena, such as the formation of quark-antiquark condensate, which go on to break additional symmetries and contribute to the effective constituent masses of quark bound states.<br><br>
+* <strong>Supersymmetry</strong> is a symmetry between matter particles (fermions) and force carriers (bosons) that pairs each known particle with a superpartner of the opposite type, doubling the particle content of the standard model. This symmetry appears because supergravity is the low-energy limit of string theory, which requires supersymmetry in order to describe fermions (early versions of string theory without supersymmetry were only able to describe bosons). Although QCD does not exhibit supersymmetry, supersymmetric extensions of QCD are useful as toy models to facilitate otherwise impossible calculations in the strongly-coupled regime. As such, we only wish to break enough supersymmetry to include the neccesary matter content, keeping a residual amount for computations.<br><br>
+* <strong>A large number of colours</strong> $N$ allows one to define an effective coupling $\lambda=g^2 N$ which naturally groups quark-gluon interactions according to their topology, forming an equivalence between large-$N$ QCD and the lowest order (tree-level) interactions in string theory. In reality, QCD only has three colour charges- red, blue and green - but many of the qualitative features of the theory are expected to persist from the large-$N$ limit. Whilst we do not wish to break this as such, we do wish to borrow results from the $N=3$ theory in our models to be consistent with QCD.
 <br>
 <br>
-The second difference is supersymmetry, which is a symmetry between matter particles (fermions) and force carriers (bosons) that effectively doubles the particle content of the standard model. This appears because supergravity is the low-energy limit of string theory, which requires supersymmetry to avoid tachyons and describe matter.
-<br>
-<br>
-Finally there is the matter of colour charges. Much like QED has one charge, the electric charge, QCD has three charges; red, blue and green (hence the name <em>chromo</em>dynamics). The CFT in this correspondance has an infinte number of such charges, an assumption that allows the string theory to be weakly-coupled and thus described by classical (tree level) supergravity.
+<div class="img-text">
+    <div>
+        Breaking these symmetries typically requires the introduction of additional D-branes into the underlying string theory. In AdS/CFT, D-branes are string-theoetic objects with a dual interpretation: they can be either viewed as sources for closed string (graviton) modes that shape the background geometry via gravity, or as objects upon which open strings end, giving rise to gauge and matter fields.
+        <br>
+        <br>
+        In this picture, the open string endpoints (where the fields live) are restricted to the brane surface, whilst the closed strings can propagate freely throughout the higher-dimensional spacetime. This provides an intuitive picture for why the gravitational description involves an additional dimension relative to the gauge theory, reflecting the dual role D-branes play in string theory.
+    </div>
+    <figure>
+        <img src="../images/brane_dual.png" alt="AdS QCD">
+        <figcaption>D-branes both source closed strings (gravitons) and act as endpoints for open strings (gauge fields), resulting in the the AdS/CFT correspondence.</figcaption>
+    </figure>
+</div>
 
-## My Research
+
+## My Research: AdS/QCD at Finite Temperature
 In my research, I construct specific configurations of string-theoretic objects in five-dimensional AdS space that, in the supergravity limit, produce dual descriptions of strongly-coupled quark-gluon interactions, including those at finite temperature attained by the insertion of a Schwarzchild black hole into the bulk gravitating geometry. These objects include hypersurfaces called D-branes that act as a source of gravitons (the quanta of gravity) as well as momentum conserving endpoints for the open strings that describe quarks and gluons. This dual interpretation of D-branes actually lies at the heart of the AdS/CFT correspondance, the intuition for which can be seen in the image to the right.
 
 

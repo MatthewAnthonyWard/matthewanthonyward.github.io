@@ -221,6 +221,11 @@ hr.div { border: none; border-top: 1px solid #333; margin: 0 36px; }
   border-radius: 8px;
 }
 
+  .img-text img:nth-of-type(3) {
+    width:1000px;
+    background-color: white;
+  }
+
   .img-text figcaption { font-size: max(14px, 1.1vh); color: #cdcccc; line-height: 1.4; font-weight: 300; text-align: justify; font-style: italic; margin-top: 2px; margin-bottom:24px;}
 
 
