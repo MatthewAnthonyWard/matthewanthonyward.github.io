@@ -73,11 +73,11 @@ a {
   text-decoration: none;
 }
 .nav-icon {
-  width: 45px; height: 45px;
+  width: max(45px, 2.6vw); height: max(45px, 2.6vw);
   background: #0b75dd;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 18px; font-weight: 500; color: #fff;
+  font-size: max(18px, 1.6vh); font-weight: 500; color: #fff;
   margin-right: 1vw;
   margin-left: 0.8vw;
 }
@@ -180,8 +180,8 @@ hr.div { border: none; border-top: 1px solid #333; margin: 0 36px; }
 /* --─ At a Glance ── */
 .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 0 16px 0; }
 .cv-column {display: flex;flex-direction: column; gap: 12px; align-items: flex-start; }
-.cv-column h3 { font-size: 22px; font-weight: 400; color: #fff; text-align: left;}
-.cv-column ul { font-size: 18px; color: #cdcccc; line-height: 1.45; font-weight: 300; text-align: left;}
+.cv-column h3 { font-size: max(22px, 2vh); font-weight: 600; color: #fff; text-align: left;}
+.cv-column ul { font-size: max(16px, 1.4vh); color: #cdcccc; line-height: 1.45; font-weight: 300; text-align: left;}
 
 
 /* ── Skills + Experience ── */
