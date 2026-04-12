@@ -86,10 +86,10 @@ There are three features of the above form of the AdS/CFT correspondance that ar
 
 
 ## My Research: AdS/QCD at Finite Temperature
-In my research, I construct specific configurations of string-theoretic objects in five-dimensional AdS space that, in the supergravity limit, produce dual descriptions of strongly-coupled quark-gluon interactions, including those at finite temperature attained by the insertion of a Schwarzchild black hole into the bulk gravitating geometry. These objects include hypersurfaces called D-branes that act as a source of gravitons (the quanta of gravity) as well as momentum conserving endpoints for the open strings that describe quarks and gluons. This dual interpretation of D-branes actually lies at the heart of the AdS/CFT correspondance, the intuition for which can be seen in the image to the right.
+<br>
 
+> Pending...
 
-My first paper, published in 2023, used the perturbative running coupling constant $g$ from QCD to calculate the mass of a generic $n$-quark state, attaining an improved prediction for the proton mass compared to other holographic models. My recent work explores the phase transition of the quark-gluon plasma, predicting the lifetime of quark-based dark matter candidates such as the sexaquark.
 
 
 

@@ -230,7 +230,7 @@ hr.div { border: none; border-top: 1px solid #333; margin: 0 36px; }
 
 
 /* ── Markdown ── */
-.md { font-size: max(18px, 1.4vh); color: #cdcccc; line-height: 1.4; font-weight: 300; text-align: left;}
+.md { font-size: max(18px, 1.4vh); color: #cdcccc; line-height: 1.4; font-weight: 300; text-align: left; margin-bottom: 6vh;}
 .md h1 { font-size: 42px; font-weight: 550; color: #fff; margin-bottom: 32px; text-align: left;}
 .md h2 { font-size: 28px; font-weight: 450; color: #fff; margin-bottom: 6px; margin-top: 5vh; text-align: left;}
 .md h3 { font-size: 22px; font-weight: 400; color: #fff; margin-bottom: 12px; text-align: left;}
