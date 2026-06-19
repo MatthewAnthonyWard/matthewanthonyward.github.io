@@ -85,7 +85,7 @@ There are three features of the above form of the AdS/CFT correspondance that ar
 </div>
 
 
-## My Research: AdS/QCD at Finite Temperature
+## AdS/QCD at Finite Temperature
 <br>
 
 Pending...
