@@ -132,13 +132,18 @@ function update(s) {
   s.vcy = newVcy;
 }
 
+let animPaused = false;
+document.addEventListener('visibilitychange', () => { animPaused = document.hidden; });
+
 function animate(t) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < strings.length; i++) {
-    update(strings[i]);
-    drawString(strings[i], t);
-    if (isOffScreen(strings[i])) {
-      strings[i] = makeString();
+  if (!animPaused) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < strings.length; i++) {
+      update(strings[i]);
+      drawString(strings[i], t);
+      if (isOffScreen(strings[i])) {
+        strings[i] = makeString();
+      }
     }
   }
   requestAnimationFrame(animate);
@@ -215,10 +220,12 @@ async function loadPage(url) {
     });
   }
 
-  const mathJaxReady = MathJax.startup.promise;
   await initMarkdown();
-  await mathJaxReady;
-  MathJax.typesetPromise();
+  if (window.MathJax) {
+    const mathJaxReady = MathJax.startup.promise;
+    await mathJaxReady;
+    MathJax.typesetPromise();
+  }
 }
 
 document.addEventListener('click', async e => {
