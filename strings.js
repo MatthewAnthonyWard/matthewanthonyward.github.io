@@ -65,7 +65,7 @@ function makeString() {
     points,
     opacity:   rand(0.2, 0.5),
     lineWidth: rand(3, 8),
-    hue:       rand(200, 230),
+    hue:       rand(185, 200),
     phase:     rand(0, Math.PI * 2),
   };
 }

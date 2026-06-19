@@ -7,8 +7,9 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Colour: match --col-card-bg in style.css */
     body {
-      background: #222222;
+      background: #161616;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -110,7 +111,7 @@
       }));
 
       function draw(){
-        ctx.fillStyle = '#222222';
+        ctx.fillStyle = '#161616';
         ctx.fillRect(0, 0, W, H);
 
         for(const t of tracks){
@@ -193,7 +194,7 @@
       }
 
       function draw(){
-        ctx.fillStyle = '#222222';
+        ctx.fillStyle = '#161616';
         ctx.fillRect(0, 0, W, H);
 
         for(const e of edges){
