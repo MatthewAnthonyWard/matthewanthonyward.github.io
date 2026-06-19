@@ -65,7 +65,7 @@ function makeString() {
     points,
     opacity:   rand(0.2, 0.5),
     lineWidth: rand(3, 8),
-    hue:       rand(185, 200),
+    hue:       rand(220, 270),
     phase:     rand(0, Math.PI * 2),
   };
 }
@@ -252,6 +252,12 @@ window.addEventListener('message', async e => {
   history.pushState({}, '', url);
   await loadPage(url);
 });
+
+// ── Overscroll colour ──
+window.addEventListener('wheel', e => {
+  document.documentElement.style.backgroundColor =
+    e.deltaY < 0 ? '#0F3A5A' : '#081E38';
+}, { passive: true });
 
 // Initialise on first load
 initCounters();

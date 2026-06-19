@@ -1,27 +1,42 @@
 /* ── Colour palette ── */
 :root {
-  --col-page-bg:  #2E4A5A;  /* outer page / string canvas background */
-  --col-card-bg:  #161616;  /* card, navbar, footer background       */
-  --col-accent:   #2A7F8F;  /* highlights, buttons, icons, underlines */
+  --col-page-bg:  #1f1f1f;            /* outer page bg fallback (gradient applied to body) */
+  --col-card-bg:  #141414;            /* card, navbar, footer background       */
+  --col-accent:   #2E6494;            /* highlights, buttons, icons, underlines */
+  --col-text:     #E0E0E0;            /* main heading / title text             */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: var(--col-page-bg);
-  min-height: 100vh;
-  padding: 36px 12px 60px;
-  position: relative;
+  background: linear-gradient(to bottom, #0F3A5A, #081E38) no-repeat fixed;
+  height: 100%;
+  overflow-y: auto;
   overflow-x: hidden;
+  padding: 36px 12px 60px;
+  padding-right: 16px;
+  box-shadow: inset -16px 0 0 0 var(--col-card-bg);
+  position: relative;
+  scrollbar-gutter: stable;
+  scrollbar-color: var(--col-accent) var(--col-card-bg);
+  scrollbar-width: thin;
 }
 
 strong { font-weight: 600;
 }
 
 html {
-  scrollbar-gutter: stable;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #0F3A5A, #081E38) no-repeat fixed;
 }
+
+
+body::-webkit-scrollbar { width: 16px; }
+body::-webkit-scrollbar-track { background: var(--col-card-bg); }
+body::-webkit-scrollbar-thumb { background: var(--col-accent); border-radius: 3px; }
+body::-webkit-scrollbar-thumb:hover { background: var(--col-text); }
 
 a {
   color: inherit;
@@ -49,7 +64,7 @@ a {
 
 /* ── Card ── */
 .card {
-  max-width: 70%;
+  max-width: 74%;
   margin: 4vh auto;
   background: var(--col-card-bg);
   border-radius: 24px;
@@ -76,21 +91,11 @@ a {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-right: auto;
   text-decoration: none;
 }
-.nav-icon {
-  width: max(45px, 2.6vw); height: max(45px, 2.6vw);
-  background: var(--col-accent);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: max(18px, 1.6vh); font-weight: 500; color: #fff;
-  margin-right: 1vw;
-  margin-left: 0.8vw;
-}
-.nav-name { font-size: max(3.4vh, 28px); font-weight: 550; color: #fff; }
+.nav-name { font-size: max(3.4vh, 28px); font-weight: 550; color: var(--col-text); }
 
-.nav-links { display:flex; align-items:center; gap:0; list-style:none; }
+.nav-links { display:flex; align-items:center; gap:0; list-style:none; margin-left: 34vw; }
 .nav-links li a {
   color: #999;
   font-size: max(2vh, 20px);
@@ -111,26 +116,47 @@ a {
 }
 
 .portrait {
-  flex-shrink: 0;
-  width: 23vw; height: 23vw;
+  width: 25.3vw; height: 25.3vw;
   border-radius: 50%;
   background: #333;
   border: 0.55vw solid var(--col-accent);
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
   overflow: hidden;
+  position: relative;
   display: flex; align-items: flex-end; justify-content: center;
-  margin-right: 2vw;
 }
 .portrait img {
   width: 100%; height: auto;
   display: block;
 }
+.portrait-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 25.3vw;
+  margin-right: 3vw;
+}
+.portrait-arc-text {
+  position: absolute;
+  bottom: -2.5vw;
+  left: -2.5vw;
+  width: calc(100% + 5vw);
+  height: calc(100% + 5vw);
+  pointer-events: none;
+  overflow: visible;
+}
+.portrait-arc-text text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 8px;
+  font-weight: 500;
+  fill: var(--col-text);
+  letter-spacing: 0.06em;
+}
 
 .hero-body { flex: 1; }
 .hero-role { font-size: 20px; color: #a8a8a8; margin-bottom: 10px; font-weight: 400; letter-spacing: 0.04em; }
-.hero-name { font-size: 52px; font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 12px; }
-.hero-title { font-size: 42px; font-weight: 550; color: #fff; margin-bottom: 6px; text-align: left;}
-.hero-subtitle { font-size: 24px; font-weight: 550; color: #fff; margin-bottom: 4px; text-align: left;}
+.hero-name { font-size: 52px; font-weight: 700; color: var(--col-text); line-height: 1.1; margin-bottom: 12px; }
+.hero-title { font-size: 42px; font-weight: 550; color: var(--col-text); margin-bottom: 6px; text-align: left;}
+.hero-subtitle { font-size: 24px; font-weight: 550; color: var(--col-text); margin-bottom: 4px; text-align: left;}
 .hero-desc { font-size: max(18px, 1.4vh); color: #cdcccc; line-height: 1.4; margin-bottom: 6px; font-weight: 300; text-align: left;}
 .hero-btns { display: flex; gap: 10px; }
 
@@ -170,7 +196,7 @@ hr.div { border: none; border-top: 1px solid #333; margin: 0 36px; }
 .sec { padding: 5vh 3vw; }
 
 .sec-title {
-  font-size: 2.5vh; font-weight: 600; color: #fff;
+  font-size: 2.5vh; font-weight: 600; color: var(--col-text);
   position: relative;
   display: inline-block;
   margin-bottom: 24px;
@@ -186,7 +212,7 @@ hr.div { border: none; border-top: 1px solid #333; margin: 0 36px; }
 /* --─ At a Glance ── */
 .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 0 16px 0; }
 .cv-column {display: flex;flex-direction: column; gap: 12px; align-items: flex-start; }
-.cv-column h3 { font-size: max(22px, 2vh); font-weight: 600; color: #fff; text-align: left;}
+.cv-column h3 { font-size: max(22px, 2vh); font-weight: 600; color: var(--col-text); text-align: left;}
 .cv-column ul { font-size: max(18px, 1.4vh); color: #cdcccc; line-height: 1.45; font-weight: 300; text-align: left;}
 
 
@@ -238,9 +264,9 @@ hr.div { border: none; border-top: 1px solid #333; margin: 0 36px; }
 
 /* ── Markdown ── */
 .md { font-size: max(18px, 1.4vh); color: #cdcccc; line-height: 1.4; font-weight: 300; text-align: left; margin-bottom: 6vh;}
-.md h1 { font-size: 42px; font-weight: 550; color: #fff; margin-bottom: 32px; text-align: left;}
-.md h2 { font-size: 28px; font-weight: 450; color: #fff; margin-bottom: 6px; margin-top: 5vh; text-align: left;}
-.md h3 { font-size: 22px; font-weight: 400; color: #fff; margin-bottom: 12px; text-align: left;}
+.md h1 { font-size: 42px; font-weight: 550; color: var(--col-text); margin-bottom: 32px; text-align: left;}
+.md h2 { font-size: 28px; font-weight: 450; color: var(--col-text); margin-bottom: 6px; margin-top: 5vh; text-align: left;}
+.md h3 { font-size: 22px; font-weight: 400; color: var(--col-text); margin-bottom: 12px; text-align: left;}
 
 .md blockquote {
   border-left: 4px solid var(--col-accent);
@@ -352,9 +378,9 @@ button:active {
 
 /* ── Scroll top btn ── */
 .scrolltop {
-  position: fixed; bottom: 18px; right: 18px;
+  position: fixed; bottom: 18px; right: 32px;
   width: 36px; height: 36px;
-  background: #252525;
+  background: var(--col-card-bg);
   border: 1px solid #3a3a3a;
   border-radius: 4px;
   display: flex; align-items: center; justify-content: center;
