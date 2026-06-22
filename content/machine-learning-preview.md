@@ -1,4 +1,4 @@
-### Predicting the clinical acceptability of AI-contours using spatial metrics
+### Quantifying uncertainty in machine learning outputs 
 
 Despite the widespread use of deep learning models for medical image segmentation, there is no clinically informed standard for assessing their performance. Evaluation typically relies on geometric similarity between predicted and ground-truth segmentations, with the Dice–Sørensen coefficient acting as the de facto gold standard. However, recent studies suggest alternative metrics may correlate more strongly with clinical acceptability, the measurement of which remains uncertain.<br>
 <br>
