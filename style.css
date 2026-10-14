@@ -72,6 +72,9 @@ a {
   position: relative;
   z-index: 1;
   box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  /* hole punch, top left */
+  -webkit-mask: radial-gradient(circle at 50px 50px, transparent 28px, #000 28.5px);
+  mask: radial-gradient(circle at 50px 50px, transparent 28px, #000 28.5px);
 }
 
 /* ── Navbar ── */
@@ -95,7 +98,7 @@ a {
 }
 .nav-name { font-size: max(3.4vh, 28px); font-weight: 550; color: var(--col-text); }
 
-.nav-links { display:flex; align-items:center; gap:0; list-style:none; margin-left: 34vw; }
+.nav-links { display:flex; align-items:center; gap:0; list-style:none; margin-left: calc(32vw + 8px); }
 .nav-links li a {
   color: #999;
   font-size: max(2vh, 20px);
@@ -112,11 +115,11 @@ a {
   display: flex;
   align-items: center;
   gap: 32px;
-  padding: 5vh 6vw 0;
+  padding: 4vh 6vw 0;
 }
 
 .portrait {
-  width: 24vw; height: 24vw;
+  width: 25vw; height: 25vw;
   border-radius: 50%;
   background: #333;
   border: 0.55vw solid var(--col-accent);
@@ -124,6 +127,7 @@ a {
   overflow: hidden;
   position: relative;
   display: flex; align-items: flex-end; justify-content: center;
+  margin-bottom: 1.6vh;
 }
 .portrait img {
   width: 100%; height: auto;
@@ -171,7 +175,7 @@ a {
 .hero-name { font-size: 52px; font-weight: 700; color: var(--col-text); line-height: 1.1; margin-bottom: 12px; }
 .hero-title { font-size: 42px; font-weight: 550; color: var(--col-text); margin-bottom: 6px; text-align: left;}
 .hero-subtitle { font-size: 24px; font-weight: 550; color: var(--col-text); margin-bottom: 4px; text-align: left;}
-.hero-desc { font-size: max(18px, 1.4vh); color: #cdcccc; line-height: 1.4; margin-bottom: 6px; font-weight: 300; text-align: left;}
+.hero-desc { font-size: max(18px, 1.4vh); color: #cdcccc; line-height: 1.4; margin-bottom: 6px; font-weight: 300;}
 .hero-btns { display: flex; gap: 10px; }
 
 .social-icons { display: flex; gap: 20px; margin-top: 15px; }
